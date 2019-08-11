@@ -3,11 +3,14 @@ package com.example.cartest;
 import com.example.cartest.domain.Car;
 import com.example.cartest.repo.CarRepository;
 import com.example.cartest.utils.PropertyHelper;
+import com.example.cartest.view.ExcelReportView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -124,6 +127,14 @@ public class CarController {
         }
         repo.save(n);
         return "Saved";
+    }
+
+
+    @GetMapping(path = "/report")
+    public ModelAndView getExcel() {
+        List<Car> carList = repo.findAll();
+        return new ModelAndView(new ExcelReportView(), "carList", carList);
+
     }
 
 

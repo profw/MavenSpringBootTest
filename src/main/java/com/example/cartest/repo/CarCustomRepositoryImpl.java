@@ -47,7 +47,13 @@ public class CarCustomRepositoryImpl implements CarCustomRepository {
             String value = filterRule.get("value");
             String op = filterRule.get("op");
             //TODO: here we can add anoher predicate with other op
-            predicates.add(cb.like(book.get(field), "%" + value + "%"));
+            if (op.equals("contains")) {
+                predicates.add(cb.like(book.get(field), "%" + value + "%"));
+            }else if (op.equals("equal")) {
+                predicates.add(cb.equal(book.get(field), value));
+            } else if (op.equals("notequal")) {
+                predicates.add(cb.notEqual(book.get(field), value));
+            }
         }
 
         cq.where(predicates.toArray(new Predicate[0]));

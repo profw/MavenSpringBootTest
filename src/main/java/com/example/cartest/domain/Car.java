@@ -43,9 +43,9 @@ public class Car {
     private int month = 0;
 
     /**
-     * Engine Volume, fox ex. 1.6, 1.8...
+     * Engine Volume (dimension cm3), fox ex. 1600, 1800...
      */
-    @Range(min = 0, max = 40)
+    @Range(min = 0, max = 40000)
     private double engineVolume = 0;
 
     /**
@@ -54,9 +54,9 @@ public class Car {
     private boolean hasTurbo = false;
 
     /**
-     * Engine power
+     * Engine power, hp
      */
-    @Range(min = 0)
+    @Range(min = 0, max=1000)
     private double power;
 
     /**
